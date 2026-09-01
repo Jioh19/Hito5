@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enterprise Identity & User Management</title>
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <div class="header-brand">
+        <span class="header-badge">Hito 5 Full-Stack</span>
+        <h1>🛡️ Identity & User Management System</h1>
+        <p>Spring Boot 3 + PostgreSQL 16 + TypeScript Vanilla</p>
+      </div>
+      <div class="header-status">
+        <span class="status-indicator online"></span>
+        <span class="status-text">Backend: localhost:8080</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Top Action Cards -->
+    <div class="action-grid">
+      <!-- Section 1: User Registration Form -->
+      <section class="form-section card-box" aria-labelledby="register-heading">
+        <h2 id="register-heading">Register New User</h2>
+        <p class="section-desc">Create a persistent user record backed by PostgreSQL.</p>
+        
+        <form id="register-form" novalidate>
+          <div class="form-group">
+            <label for="txt-reg-username">Username:</label>
+            <input 
+              type="text" 
+              id="txt-reg-username" 
+              name="username"
+              placeholder="e.g. jioh" 
+              autocomplete="username"
+              required 
+              minlength="4"
+            />
+            <small class="field-hint">At least 4 alphanumeric characters (letters & digits only).</small>
+          </div>
+
+          <div class="form-group">
+            <label for="txt-reg-email">Email Address:</label>
+            <input 
+              type="email" 
+              id="txt-reg-email" 
+              name="email"
+              placeholder="e.g. jioh@example.com" 
+              autocomplete="email"
+              required 
+            />
+            <small class="field-hint">Must be a valid email format.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="txt-reg-password">Password:</label>
+            <input 
+              type="password" 
+              id="txt-reg-password" 
+              name="password"
+              placeholder="••••••••" 
+              autocomplete="new-password"
+              required 
+            />
+            <small class="field-hint">Account password (non-empty).</small>
+          </div>
+
+          <button type="submit" id="btn-register-submit" class="btn-primary">
+            Register User
+          </button>
+        </form>
+      </section>
+
+      <!-- Section 2: Quick Login Verification -->
+      <section class="login-section card-box" aria-labelledby="login-heading">
+        <h2 id="login-heading">Verify Authentication</h2>
+        <p class="section-desc">Test credentials against <code>/api/v1/users/login</code>.</p>
+
+        <form id="login-form" novalidate>
+          <div class="form-group">
+            <label for="txt-login-username">Username:</label>
+            <input 
+              type="text" 
+              id="txt-login-username" 
+              name="username"
+              placeholder="e.g. jioh" 
+              autocomplete="username"
+              required 
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="txt-login-password">Password:</label>
+            <input 
+              type="password" 
+              id="txt-login-password" 
+              name="password"
+              placeholder="••••••••" 
+              autocomplete="current-password"
+              required 
+            />
+          </div>
+
+          <button type="submit" id="btn-login-submit" class="btn-secondary">
+            Authenticate
+          </button>
+        </form>
+      </section>
+    </div>
+
+    <!-- Live Feedback Alert Area -->
+    <div id="feedback-message" class="feedback" role="alert" aria-live="polite"></div>
+
+    <!-- Section 3: Registered Users Directory -->
+    <section class="list-section card-box" aria-labelledby="users-heading">
+      <div class="list-header">
+        <div class="list-title">
+          <h2 id="users-heading">Active Users Directory</h2>
+          <span id="user-count" class="counter-badge">0</span>
+        </div>
+        <button type="button" id="btn-refresh" class="btn-refresh" title="Reload from server">
+          🔄 Refresh
+        </button>
+      </div>
+
+      <div id="users-list" class="cards-grid">
+        <p class="loading">Fetching users from PostgreSQL...</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>Hito 5 — Full-Stack Integration • Clean Architecture • Java 21 Spring Boot + PostgreSQL + TypeScript Vite</p>
+  </footer>
+
+  <script type="module" src="./src/main.ts"></script>
+</body>
+</html>
